@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { auth } from '../firebase';
-import * as routes from '../routes.js';
+import { auth } from '../../firebase';
+import * as routes from '../../routes.js';
+import './SignIn.css';
 
 const SignInPage = ({ history }) =>
-  <div>
-    <h1>SignIn</h1>
+  <div className="container">
+    <h1> Se connecter </h1>
     <SignInForm history={history} />
   </div>
 
@@ -61,7 +62,7 @@ class SignInForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form className="formStyle" onSubmit={this.onSubmit}>
         <input
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}

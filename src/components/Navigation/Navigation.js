@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import SignOutButton from './SignOut';
-import * as routes from '../routes';
+import SignOutButton from '../SignOut/SignOut';
+import * as routes from '../../routes';
 
 const Navigation = ({ authUser }) =>
   <div>

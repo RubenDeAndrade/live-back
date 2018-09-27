@@ -4,10 +4,10 @@ import {
   Route
 } from 'react-router-dom';
 
-import Navigation from './Navigation';
-import SignInPage from './SignIn.js';
-import HomePage from './Home.js';
-import LandingPage from './Landing.js';
+import Navigation from './Navigation/Navigation';
+import SignInPage from './SignIn/SignIn';
+import HomePage from './Home/Home';
+import LandingPage from './Landing/Landing';
 
 import withAuthentication from './withAuthentication';
 import * as routes from '../routes.js';
