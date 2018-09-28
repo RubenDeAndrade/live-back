@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-import sessionReducer from './session';
-import userReducer from './user';
+import { auth, authIsLoading, authHasError } from './session';
+import { events, eventsAreLoading, eventsHaveError } from './event';
 
 const rootReducer = combineReducers({
-  sessionState: sessionReducer,
-  userState: userReducer,
+  authState: auth,
+  authIsLoading,
+  authHasError,
+  eventsState: events,
+  eventsAreLoading,
+  eventsHaveError,
 });
 
 export default rootReducer;

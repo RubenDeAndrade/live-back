@@ -27,7 +27,7 @@ const NavigationNonAuth = () =>
   </ul>
 
 const mapStateToProps = (state) => ({
-  authUser: state.sessionState.authUser,
+  authUser: state.authState.auth,
 });
 
 export default connect(mapStateToProps)(Navigation);

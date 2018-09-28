@@ -8,7 +8,6 @@ export const doCreateUser = (id, username, email) =>
     email,
   });
 
-export const onceGetUsers = () =>
-  firestore.collection('/users').get();
-
+export const onceGetEvents = (authId) =>
+  firestore.collection('/events').where("creatorId", "==", authId).get();
 // Other Entity APIs ...

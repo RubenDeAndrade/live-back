@@ -2,18 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { firestore } from '../../firebase';
-import { getUsers } from '../../actions/usersAction';
+import { getEvents } from '../../actions/eventsAction';
 import withAuthorization from '../withAuthorization';
 
 class HomePage extends Component {
   componentDidMount() {
-    this.props.fetchUsers();
-  }
-  render () {
-    const { users } = this.props;
+      const { authUser } = this.props;
 
-    console.log(users);
-    const listUsers = users.map((user) => <li> {user.name} </li>)
+      console.log("HOME did mount");
+      this.props.fetchEvents(authUser);
+  }
+
+  render () {
+    const { events } = this.props;
+
+    if (this.props.hasError) {
+      return <p>Sorry! There was an error loading the items</p>;
+    }
+
+    if (this.props.isLoading) {
+      return <p>Loading ...</p>;
+    }
+    const listUsers = events.map((event, index) => <li key={index}> {event.name} </li>)
     return (
       <div>
         <h1> Home Page </h1>
@@ -25,11 +35,13 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  users: state.userState.users,
+  events: state.eventsState.events,
+  hasError: state.eventsHaveError,
+  isLoading: state.eventsAreLoading
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUsers: () => dispatch(getUsers()),
+  fetchEvents: (authUser) => dispatch(getEvents(authUser)),
 });
 
 const authCondition = (authUser) => !!authUser;
