@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import { Link } from "react-router-dom";
 import { firestore } from '../../firebase';
 import { getEvents } from '../../actions/eventsAction';
 import withAuthorization from '../withAuthorization';
+import * as routes from '../../routes.js';
 
 class HomePage extends Component {
   componentDidMount() {
@@ -16,6 +18,7 @@ class HomePage extends Component {
   render () {
     const { events } = this.props;
 
+    console.log(events);
     if (this.props.hasError) {
       return <p>Sorry! There was an error loading the items</p>;
     }
@@ -28,7 +31,11 @@ class HomePage extends Component {
       <div>
         <h1> Home Page </h1>
         <p> This page is for all the signed in users. </p>
-        <ul>{listUsers}</ul>
+
+        { events.map(({name}, id) =>
+          <Link to={`/event/${id}`}>{name}<br/></Link>
+        )}
+        {this.props.children}
       </div>
     )
   }

@@ -7,6 +7,7 @@ import {
 import Navigation from './Navigation/Navigation';
 import SignInPage from './SignIn/SignIn';
 import HomePage from './Home/Home';
+import EventPage from './Event/Event';
 import LandingPage from './Landing/Landing';
 
 import withAuthentication from './withAuthentication';
@@ -18,11 +19,11 @@ const App = () =>
     <div>
       <Navigation />
 
-      <hr/>
-
       <Route exact path={routes.LANDING} component={LandingPage} />
       <Route exact path={routes.SIGN_IN} component={SignInPage} />
-      <Route exact path={routes.HOME} component={HomePage} />
+      <Route exact path={routes.HOME} component={HomePage}>
+        <Route exact path={routes.EVENT} component={EventPage} />
+      </Route>
     </div>
   </Router>
 
